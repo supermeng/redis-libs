@@ -8,58 +8,58 @@ import (
 	// "time"
 )
 
-func Test_ListNodes(t *testing.T) {
+// func Test_ListNodes(t *testing.T) {
 
-	// master_addr, err := GetMasterAddrByName("127.0.0.1", "5000", "mymaster")
-	// if err == nil {
-	// 	t.Log("测试通过了, 地址:", master_addr) //记录一些你期望记录的信息
+// 	// master_addr, err := GetMasterAddrByName("127.0.0.1", "5000", "mymaster")
+// 	// if err == nil {
+// 	// 	t.Log("测试通过了, 地址:", master_addr) //记录一些你期望记录的信息
 
-	// }
-	// SlaveOf("127.0.0.1", "6003", "127.0.0.1", "6001")
+// 	// }
+// 	// SlaveOf("127.0.0.1", "6003", "127.0.0.1", "6001")
 
-	// SlavesBySentinel("127.0.0.1", "5000", "mymaster")
+// 	// SlavesBySentinel("127.0.0.1", "5000", "mymaster")
 
-	// if slaves, err := Slaves(master_addr.Host, master_addr.Port); err == nil {
-	// 	t.Log("测试通过了, slave地址:", slaves)
-	// }
+// 	// if slaves, err := Slaves(master_addr.Host, master_addr.Port); err == nil {
+// 	// 	t.Log("测试通过了, slave地址:", slaves)
+// 	// }
 
-	// sentinel_addrs := []*Address{BuildAddress("127.0.0.1", "5001"), BuildAddress("127.0.0.1", "5002"), BuildAddress("127.0.0.1", "5000")}
-	// if err := RemoveSlaveFromSentinel("127.0.0.1", "6002", "master_service", sentinel_addrs...); err == nil {
-	// 	t.Log("remove slave from sentinel pass")
-	// }
-	// if err := RemoveSlaveFromSentinel("127.0.0.1", "6002", "master_service", sentinel_addrs...); err == nil {
-	// 	t.Log("remove slave from sentinel pass")
-	// }
-	// res, _ := GetMasterAddrByName("127.0.0.1", "26379", "mymaster")
-	// fmt.Println(res)
-	r, _ := GetMasterAddrByName("127.0.0.1", "26379", "mymaster")
-	fmt.Println(r)
+// 	// sentinel_addrs := []*Address{BuildAddress("127.0.0.1", "5001"), BuildAddress("127.0.0.1", "5002"), BuildAddress("127.0.0.1", "5000")}
+// 	// if err := RemoveSlaveFromSentinel("127.0.0.1", "6002", "master_service", sentinel_addrs...); err == nil {
+// 	// 	t.Log("remove slave from sentinel pass")
+// 	// }
+// 	// if err := RemoveSlaveFromSentinel("127.0.0.1", "6002", "master_service", sentinel_addrs...); err == nil {
+// 	// 	t.Log("remove slave from sentinel pass")
+// 	// }
+// 	// res, _ := GetMasterAddrByName("127.0.0.1", "26379", "mymaster")
+// 	// fmt.Println(res)
+// 	r, _ := GetMasterAddrByName("127.0.0.1", "26379", "mymaster")
+// 	fmt.Println(r)
 
-	// GetSlavesInSentinel("127.0.0.1", "5000", "master_service")
-	GetSlavesInSentinel("127.0.0.1", "26379", "master_service2")
+// 	// GetSlavesInSentinel("127.0.0.1", "5000", "master_service")
+// 	GetSlavesInSentinel("127.0.0.1", "26379", "master_service2")
 
-	// RoleStatus("127.0.0.1", "6001")
-	// if role, status, err := RoleStatus("127.0.0.1", "6002"); err == nil {
-	// 	fmt.Println(role, status)
-	// }
+// 	// RoleStatus("127.0.0.1", "6001")
+// 	// if role, status, err := RoleStatus("127.0.0.1", "6002"); err == nil {
+// 	// 	fmt.Println(role, status)
+// 	// }
 
-	infos, err := RedisNodeInfo("127.0.0.1", "6001")
-	if err != nil {
-		fmt.Println("err:", err.Error())
-	}
-	fmt.Println(infos)
+// 	infos, err := RedisNodeInfo("127.0.0.1", "6001")
+// 	if err != nil {
+// 		fmt.Println("err:", err.Error())
+// 	}
+// 	fmt.Println(infos)
 
-	// masters, err := FetchMastersInSentinel("127.0.0.1", "26379")
-	// if err != nil {
-	// 	fmt.Println(err.Error())
-	// }
-	// for _, m := range masters {
-	// 	fmt.Println(m)
-	// }
-	// addr, _ := NewAddress(":5000")
-	// fmt.Println(addr)
+// 	// masters, err := FetchMastersInSentinel("127.0.0.1", "26379")
+// 	// if err != nil {
+// 	// 	fmt.Println(err.Error())
+// 	// }
+// 	// for _, m := range masters {
+// 	// 	fmt.Println(m)
+// 	// }
+// 	// addr, _ := NewAddress(":5000")
+// 	// fmt.Println(addr)
 
-}
+// }
 
 // func TestRedisConn(t *testing.T) {
 // 	c, _ := net.DialTimeout("tcp", "127.0.0.1:6379", time.Duration(10*time.Second))
@@ -118,3 +118,11 @@ func Test_ListNodes(t *testing.T) {
 // 		fmt.Println("res:", string(res))
 // 	}
 // }
+
+func TestSlowLog(t *testing.T) {
+	if resp, err := FetchSlowLogWithAddress("127.0.0.1", "7001", false); err != nil {
+		fmt.Printf("err:%v", err)
+	} else {
+		fmt.Printf("resp:%v", resp)
+	}
+}

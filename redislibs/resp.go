@@ -61,6 +61,10 @@ const (
 )
 
 var (
+	BADELEMENT = errors.New("bad element")
+)
+
+var (
 	COMMAND_CLUSTER_NODES = Pack_command("CLUSTER", "NODES")
 	COMMAND_INFO          = Pack_command("INFO")
 	COMMAND_PING          = Pack_command("PING")
@@ -116,7 +120,7 @@ func (t *Talker) readObject() (interface{}, error) {
 		}
 		return t.readArray(line)
 	default:
-		return nil, errors.New("bad element")
+		return nil, BADELEMENT
 	}
 }
 

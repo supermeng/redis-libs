@@ -216,7 +216,6 @@ func QuitFromClusterAndBalaceItsSlots(Host, Port string) (string, error) {
 		i++
 	}
 	return quitEmptyNodeFromCluster(t, cs_nodes, myself)
-
 }
 
 func FixClusterSlotsSingle(Host, Port string) (string, error) {
@@ -304,11 +303,9 @@ func MigratingClusterSlotsFix(Host, Port string) (string, error) {
 }
 
 func FixClusterSlotsMuiltAddr(addrs ...*Address) (string, error) {
-
 	if len(addrs) == 0 {
 		return "", nil
 	}
-
 	t, err := BuildTalker(addrs[0].Host, addrs[0].Port)
 	defer t.Close()
 	if err != nil {

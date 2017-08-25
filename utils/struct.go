@@ -10,6 +10,7 @@ func NewNode(data interface{}) *node {
 		data: data,
 	}
 }
+
 func (n *node) Data() interface{} {
 	return n.data
 }

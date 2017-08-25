@@ -15,10 +15,11 @@ func RedisNodeInfo(host, port string) (map[string]map[string]string, error) {
 }
 
 func redisNodeInfo(t *Talker) (map[string]map[string]string, error) {
-	resp, err := t.TalkRaw(Pack_command("info"))
+	respObj, err := t.TalkForObject(Pack_command("info"))
 	if err != nil {
 		return nil, err
 	}
+	resp := respObj.(string)
 	infos := strings.Split(resp, SYM_CRLF)
 	res := make(map[string]map[string]string)
 	var sub map[string]string
